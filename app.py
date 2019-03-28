@@ -8,6 +8,7 @@ from security import authenticate, identity
 from resources.user import UserRegister, UserList
 from resources.item import Item, ItemList
 from resources.store import Store, StoreList
+from flask_cors import CORS, cross_origin
 
 app = Flask(__name__)
 
@@ -16,6 +17,8 @@ app.config['DEBUG'] = True
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', 'sqlite:///data.db')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.secret_key = 'jose'
+CORS(app)
+
 api = Api(app)
 
 jwt = JWT(app, authenticate, identity)  # /auth
