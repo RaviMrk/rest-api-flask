@@ -15,10 +15,11 @@ class UserModel(db.Model):
     tfws = db.Column(db.String(80))
     defence = db.Column(db.String(80))
     department = db.Column(db.String(80))
+    merit = db.Column(db.Integer)
 
 
 
-    def __init__(self, username, password, caste, fname, lname, gender, university, tfws, defence, department):
+    def __init__(self, username, password, caste, fname, lname, gender, university, tfws, defence, department, merit):
         self.username = username
         self.password = password
         self.caste = caste
@@ -29,9 +30,10 @@ class UserModel(db.Model):
         self.tfws = tfws
         self.defence = defence
         self.department = department
+        self.merit = merit
 
     def json(self):
-        return {'username': self.username,'password':self.password, 'caste': self.caste, 'fname': self.fname, 'lname': self.lname, 'gender': self.gender, 'university': self.university, 'tfws': self.tfws, 'defence' : self.defence, 'department': self.department }
+        return {'username': self.username,'password':self.password, 'caste': self.caste, 'fname': self.fname, 'lname': self.lname, 'gender': self.gender, 'university': self.university, 'tfws': self.tfws, 'defence' : self.defence, 'department': self.department, 'merit': self.merit }
 
     def save_to_db(self):
         db.session.add(self)

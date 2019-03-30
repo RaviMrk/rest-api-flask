@@ -6,9 +6,10 @@ from flask_jwt import JWT
 
 from security import authenticate, identity
 from resources.user import UserRegister, UserList
-from resources.item import Item, ItemList
-from resources.store import Store, StoreList
+#from resources.item import Item, ItemList
+#from resources.store import Store, StoreList
 from flask_cors import CORS, cross_origin
+from resources.clg import CollegeData
 
 app = Flask(__name__)
 
@@ -23,11 +24,12 @@ api = Api(app)
 
 jwt = JWT(app, authenticate, identity)  # /auth
 
-api.add_resource(Store, '/store/<string:name>')
-api.add_resource(Item, '/item/<string:name>')
-api.add_resource(ItemList, '/items')
-api.add_resource(StoreList, '/stores')
+#api.add_resource(Store, '/store/<string:name>')
+#api.add_resource(Item, '/item/<string:name>')
+#api.add_resource(ItemList, '/items')
+#api.add_resource(StoreList, '/stores')
 api.add_resource(UserList ,'/userdata')
+api.add_resource(CollegeData ,'/collegedata')
 
 api.add_resource(UserRegister, '/register')
 
