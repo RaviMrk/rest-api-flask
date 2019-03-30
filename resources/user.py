@@ -5,7 +5,7 @@ from models.user import UserModel
 class UserRegister(Resource):
 
     parser = reqparse.RequestParser()
-    parser.add_argument('email',
+    parser.add_argument('username',
         type=str,
         required=True,
         help="This field cannot be blank."
@@ -16,7 +16,7 @@ class UserRegister(Resource):
         help="This field cannot be blank."
     )
    
-    parser.add_argument('cast',
+    parser.add_argument('caste',
         type=str,
         required=True,
         help="This field cannot be blank."
@@ -69,8 +69,8 @@ class UserRegister(Resource):
     def post(self):
         data = UserRegister.parser.parse_args()
 
-        if UserModel.find_by_email(data['email']):
-            return {"message": "A user with that email already exists"}, 400
+        if UserModel.find_by_username(data['username']):
+            return {"message": "A user with that username already exists"}, 400
 
         user = UserModel(**data)
         user.save_to_db()
