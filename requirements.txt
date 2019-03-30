@@ -3,5 +3,7 @@ Flask-RESTful
 Flask-JWT
 Flask-SQLAlchemy
 flask_cors
+numpy
+pandas
 uwsgi
 psycopg2
