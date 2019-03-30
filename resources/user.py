@@ -63,6 +63,11 @@ class UserRegister(Resource):
         required=True,
         help="This field cannot be blank."
     )
+    parser.add_argument('merit',
+        type=int,
+        required=True,
+        help="This field cannot be blank."
+    )
 
 
 
