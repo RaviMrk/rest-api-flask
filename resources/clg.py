@@ -62,7 +62,7 @@ class CollegeData(Resource):
             category = category + 'H'
         # return {'data': category}
 
-        merit=30000
+        merit= data['merit']
         years=[2013,2014,2015,2016,2017,2018]
         ndf=df[(df[category]>merit) & (df['Branch Name']==data['department'])].head(10)
         ndf=ndf[['Code','Name','Branch No.',category]].sort_values(by=category)
