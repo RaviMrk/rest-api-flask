@@ -60,6 +60,8 @@ class CollegeData(Resource):
 
         if data and safe_str_cmp(data.university, 'home'):
             category = category + 'H'
+        if data and safe_str_cmp(data.university, 'other'):
+            category = category + 'O'
         # return {'data': category}
 
         merit= data['merit']
