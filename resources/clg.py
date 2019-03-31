@@ -49,7 +49,7 @@ class CollegeData(Resource):
     def post(self):
         data = CollegeData.parser.parse_args()
         df = pd.read_csv('data.csv')
-        cb =pd.read_csv('combine.csv')
+        cb =pd.read_csv("combineImputed.csv")
         category = ''
         
         if data and safe_str_cmp(data.gender, 'male'):
@@ -65,20 +65,23 @@ class CollegeData(Resource):
         # return {'data': category}
 
         merit= data['merit']
-        years=[2013,2014,2015,2016,2017,2018]
+        years=['year_2013','year_2014','year_2015','year_2016','year_2017','year_2018']
+        intyears=[2013,2014,2015,2016,2017,2018]
+
         ndf=df[(df[category]>merit) & (df['Branch Name']==data['department'])].head(10)
+
         ndf=ndf[['Code','Name','Branch No.',category]].sort_values(by=category)
 
         y1=[]
-        for y in years:
+        for y in intyears:
             for x in ndf['Branch No.']:
                 y1.append(int(cb[category][(cb['Branch No.']==x )& (cb['Year']==y)]))
 
         
-        for x,y in zip(range(0,60,10),years):
-            ndf[y]=y1[x:x+10]
+        for x,y in zip(range(0,len(y1),int(len(y1)/6)),years):
+            ndf[y]=y1[x:x+int(len(y1)/6)]
 
-        ndf.rename(columns={category:'2019'})
+        ndf.rename(columns={category:'year_2019','Branch No.':'branch_no','Branch Name':'branch_name'},inplace=True)
 
         return{'data': ndf.to_json(orient='records')}
         
