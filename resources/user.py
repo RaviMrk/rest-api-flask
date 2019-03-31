@@ -1,5 +1,6 @@
 import sqlite3
 from flask_restful import Resource, reqparse
+from flask_jwt import jwt_required
 from models.user import UserModel
 
 class UserRegister(Resource):
@@ -83,6 +84,15 @@ class UserRegister(Resource):
         return {"message": "User created successfully."}, 201
 
 class UserList(Resource):
-    def get(self):
-        return {"user":[x.json() for x in UserModel.query.all()]}
+    @jwt_required()
+    def get(self,username):
+        userdata = UserModel.find_by_username(username)
+        if(userdata):
+            return userdata.json()
+        return {'message' : 'invalid credentials'} ,400
+            
+            
+
+        
+        #return {"user":[x.json() for x in UserModel.query.all()]}
         
