@@ -48,8 +48,8 @@ class CollegeData(Resource):
 
     def post(self):
         data = CollegeData.parser.parse_args()
-        df = pd.read_csv('data.csv')
-        cb =pd.read_csv("combineImputed.csv")
+        df = pd.read_csv('2019predicted.csv')
+        cb =pd.read_csv("2013-2018 Imputed10.csv")
         category = ''
         
         if data and safe_str_cmp(data.gender, 'male'):
