@@ -38,6 +38,19 @@ class CollegeData(Resource):
         help="This field cannot be blank."
     )
 
+    parser.add_argument('tfws',
+        type=str,
+        required=True,
+        help="This field cannot be blank."
+    )
+
+    parser.add_argument('defs',
+        type=str,
+        required=True,
+        help="This field cannot be blank."
+    )
+
+
     def get(self):
         df = pd.read_csv('pict_comp.csv')
         return{"data" :df['GOPENH'].to_json(orient='values')}
@@ -50,18 +63,42 @@ class CollegeData(Resource):
         data = CollegeData.parser.parse_args()
         df = pd.read_csv('2019predicted.csv')
         cb =pd.read_csv("2013-2018 Imputed10.csv")
+        cd =pd.read_csv("college Details.csv")
         category = ''
-        
-        if data and safe_str_cmp(data.gender, 'male'):
-            category = 'G'
-        if data and safe_str_cmp(data.gender, 'female'):
-            category = 'L'
-        category = category + data['caste']
 
-        if data and safe_str_cmp(data.university, 'home'):
-            category = category + 'H'
-        if data and safe_str_cmp(data.university, 'other'):
-            category = category + 'O'
+
+        if(data['tfws']=="true"):
+            category="TFWS"
+        elif(data['defs']=='true'):
+            category="DEFS"
+        else:
+            if data and safe_str_cmp(data.gender, 'male'):
+                category = 'G'
+            if data and safe_str_cmp(data.gender, 'female'):
+                category = 'L'
+            category = category + data['caste']
+            if data and safe_str_cmp(data.university, 'home'):
+                category = category + 'H'
+            if data and safe_str_cmp(data.university, 'other'):
+                category = category + 'O'
+
+
+      
+      
+        
+            
+        
+            
+        
+
+        
+            
+        
+            
+        
+
+        # if data and safe_str_cmp(data.cast, 'TFWS'):
+        #     category = 'TFWS'
         # return {'data': category}
 
         merit= data['merit']
@@ -71,7 +108,7 @@ class CollegeData(Resource):
         # ndf=df[(df[category]>merit) & (df['Branch Name']==data['department'])].head(10)
         ndf=df.sort_values([category],ascending=['True'])[(df[category]>merit) & (df['Branch Name'].str.contains(data['department']))].head(10)
 
-        ndf=ndf[['Code','Name','Branch No.',category]].sort_values(by=category)
+        ndf=ndf[['Code','Name','Branch No.',category,'college_website','lat','lon']].sort_values(by=category)
 
         y1=[]
         for y in intyears:
