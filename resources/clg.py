@@ -68,7 +68,8 @@ class CollegeData(Resource):
         years=['year_2013','year_2014','year_2015','year_2016','year_2017','year_2018']
         intyears=[2013,2014,2015,2016,2017,2018]
 
-        ndf=df[(df[category]>merit) & (df['Branch Name']==data['department'])].head(10)
+        # ndf=df[(df[category]>merit) & (df['Branch Name']==data['department'])].head(10)
+        ndf=df.sort_values([category],ascending=['True'])[(df[category]>merit) & (df['Branch Name'].str.contains(data['department']))].head(10)
 
         ndf=ndf[['Code','Name','Branch No.',category]].sort_values(by=category)
 
