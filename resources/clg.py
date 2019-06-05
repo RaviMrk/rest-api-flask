@@ -108,7 +108,7 @@ class CollegeData(Resource):
         # ndf=df[(df[category]>merit) & (df['Branch Name']==data['department'])].head(10)
         ndf=df.sort_values([category],ascending=['True'])[(df[category]>merit) & (df['Branch Name'].str.contains(data['department']))].head(10)
 
-        ndf=ndf[['Code','Name','Branch No.',category,'college_website','lat','lon']].sort_values(by=category)
+        ndf=ndf[['Code','Name','Branch No.',category,'college_website','lat','lon','naac']].sort_values(by=category)
 
         y1=[]
         for y in intyears:
