@@ -84,4 +84,5 @@ class CollegeData(Resource):
         ndf.rename(columns={category:'year_2019','Branch No.':'branch_no','Branch Name':'branch_name'},inplace=True)
 
         return{'data': ndf.to_json(orient='records')}
+
         
