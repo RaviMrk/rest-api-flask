@@ -100,6 +100,7 @@ class CollegeData(Resource):
         # if data and safe_str_cmp(data.cast, 'TFWS'):
         #     category = 'TFWS'
         # return {'data': category}
+        
 
         merit= data['merit']
         years=['year_2013','year_2014','year_2015','year_2016','year_2017','year_2018']
@@ -107,8 +108,10 @@ class CollegeData(Resource):
 
         # ndf=df[(df[category]>merit) & (df['Branch Name']==data['department'])].head(10)
         ndf=df.sort_values([category],ascending=['True'])[(df[category]>merit) & (df['Branch Name'].str.contains(data['department']))].head(10)
-
+        if(ndf[category].empty):
+            return{"message":"no rcord found"}
         ndf=ndf[['Code','Name','Branch No.',category,'college_website','lat','lon','naac']].sort_values(by=category)
+       
 
         y1=[]
         for y in intyears:
