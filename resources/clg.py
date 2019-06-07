@@ -4,6 +4,7 @@ import sqlite3
 from werkzeug.security import safe_str_cmp
 from flask_restful import Resource, reqparse
 from models.user import UserModel
+from flask_restplus import abort
 
 class CollegeData(Resource):
     parser = reqparse.RequestParser()
@@ -109,7 +110,8 @@ class CollegeData(Resource):
         # ndf=df[(df[category]>merit) & (df['Branch Name']==data['department'])].head(10)
         ndf=df.sort_values([category],ascending=['True'])[(df[category]>merit) & (df['Branch Name'].str.contains(data['department']))].head(10)
         if(ndf[category].empty):
-            return{"message":"no record found"}, 404
+            abort(404 ,custom='No record found')
+            # return{"message":"no record found"}, 404
         ndf=ndf[['Code','Name','Branch No.',category,'college_website','lat','lon','naac']].sort_values(by=category)
        
 
