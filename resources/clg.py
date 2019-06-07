@@ -109,7 +109,7 @@ class CollegeData(Resource):
         # ndf=df[(df[category]>merit) & (df['Branch Name']==data['department'])].head(10)
         ndf=df.sort_values([category],ascending=['True'])[(df[category]>merit) & (df['Branch Name'].str.contains(data['department']))].head(10)
         if(ndf[category].empty):
-            return{"message":"no rcord found"}
+            return{"message":"no record found"}, 404
         ndf=ndf[['Code','Name','Branch No.',category,'college_website','lat','lon','naac']].sort_values(by=category)
        
 
