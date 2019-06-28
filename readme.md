@@ -3,7 +3,7 @@ By studying the previous trends in the cut-off marks of a college and by establi
 
 
 ## Demo
-[Live DEMO](https://bomonew-e241c.firebaseapp.com/)
+[Live DEMO](https://collegepredictor-bf122.firebaseapp.com/)
 
 ### Tools
 | Name             | Description   |
