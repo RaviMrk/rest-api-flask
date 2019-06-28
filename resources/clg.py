@@ -52,13 +52,9 @@ class CollegeData(Resource):
     )
 
 
-    def get(self):
-        df = pd.read_csv('pict_comp.csv')
-        return{"data" :df['GOPENH'].to_json(orient='values')}
-
-
-    
-
+    # def get(self):
+    #     df = pd.read_csv('pict_comp.csv')
+    #     return{"data" :df['GOPENH'].to_json(orient='values')}
 
     def post(self):
         data = CollegeData.parser.parse_args()
@@ -82,20 +78,6 @@ class CollegeData(Resource):
                 category = category + 'H'
             if data and safe_str_cmp(data.university, 'other'):
                 category = category + 'O'
-
-
-      
-      
-        
-            
-        
-            
-        
-
-        
-            
-        
-            
         
 
         # if data and safe_str_cmp(data.cast, 'TFWS'):

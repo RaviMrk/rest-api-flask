@@ -22,16 +22,13 @@ CORS(app)
 
 api = Api(app)
 
+                    #Request handling
+
 jwt = JWT(app, authenticate, identity)  # /auth
 
-# api.add_resource(Store, '/store/<string:name>')
-# api.add_resource(Item, '/item/<string:name>')
-# api.add_resource(ItemList, '/items')
-# api.add_resource(StoreList, '/stores')
-api.add_resource(UserList ,'/userdata/<string:username>')
-api.add_resource(CollegeData ,'/collegedata')
-
-api.add_resource(UserRegister, '/register')
+api.add_resource(UserList ,'/userdata/<string:username>')   #url/userdata
+api.add_resource(CollegeData ,'/collegedata')               #url/collegedata
+api.add_resource(UserRegister, '/register')                 #url/register
 
 if __name__ == '__main__':
     from db import db
