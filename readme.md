@@ -5,6 +5,6 @@ Frontend - ReactJs
 
 
 
-# application
-(https://collegepredictor-bf122.firebaseapp.com/)
+# application link -
+https://collegepredictor-bf122.firebaseapp.com/
 
