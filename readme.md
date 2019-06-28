@@ -31,7 +31,7 @@ flask_restplus
 
 ## API URL -
 
-[API](https://stores-rest-api-22.herokuapp.com/) 
+[for API click here](https://stores-rest-api-22.herokuapp.com/) 
 
 ## Type of Request
 1. {{url}}/userdata - For getting users data
