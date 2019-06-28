@@ -1,5 +1,10 @@
-# Stores REST Api
+## An effective college predictionsystem using time series analysis
 
-This is built with Flask, Flask-RESTful, Flask-JWT, and Flask-SQLAlchemy.
+Backend - Flask, Flask-RESTful, Flask-JWT, and Flask-SQLAlchemy.
+Frontend - ReactJs 
 
-Deployed on Heroku.
+
+
+# application
+(https://collegepredictor-bf122.firebaseapp.com/)
+
